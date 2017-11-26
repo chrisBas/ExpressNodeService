@@ -13,10 +13,10 @@ TESTING
 1. RUN THE APPLICATION
   * > npm start
 2. VERIFY THE SERVICES "/public/*" WORK
-  * USING SOME RESTful TESTING TOOL (i use Postman)
+  * USING SOME RESTful TESTING TOOL (I use Postman)
     * POST TO ADDRESS: "http://localhost:3000/public/login" WITH THE JSON OBJECT:
       * {username:'Admin', password:'Admin'}
       * THIS RETURNS A JSON OBJECT CONTAINING A TOKEN VALUE in "content"."token"
     * ADD HEADER "Authorization" AND SET ITS VALUE TO "Bearer xxx" WHERE 'xxx' IS THE ABOVE TOKEN VALUE
     * DELETE TO ADDRESS: "http://localhost:3000/private/update"
-      * THIS WILL DELETE THE USER THAT WAS GAVE THE SPECIFIED TOKEN
+      * THIS WILL DELETE THE USER THAT HAD GIVEN THE SPECIFIED TOKEN
