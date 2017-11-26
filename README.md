@@ -1,3 +1,7 @@
 CREATE TABLE WITH THE FOLLOWING QUERY
 ---
 ..* "CREATE TABLE Users (Id int NOT NULL AUTO_INCREMENT, Username VARCHAR(35) NOT NULL UNIQUE, Password VARCHAR(35) NOT NULL, PRIMARY KEY (Id));"
+
+FOR PATHS THAT ARE NOT '/public/*'
+---
+..* MUST ADD HEADER "Authorization": "Bearer xxx" WHERE 'xxx' IS THE VALUE OF THE TOKEN RECEIVED FROM '/public/login' OR 'public/signup'
