@@ -2,10 +2,15 @@ var express = require('express'),
     cookieParser = require('cookie-parser'),
     bodyParser = require('body-parser'),
     routes = require('./api/routes/userRoute'),
+    expressJWT = require('express-jwt'),
+    jwt = require('jsonwebtoken'),
     app = express(),
-    port = process.env.PORT || 3000;
+    port = process.env.PORT || 3000,
+    propReader = require('properties-reader'),
+    props = propReader('api.properties');
 
 app.use(bodyParser.urlencoded({ extended:true }));
+app.use(expressJWT({secret: props.get('jwt.secret')}).unless({path: ['/public/signup', '/public/login']}))
 app.use(bodyParser.json());
 app.use(cookieParser());
 

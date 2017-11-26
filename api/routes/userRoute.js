@@ -3,12 +3,12 @@
 module.exports = function(app) {
     var userController = require('../controllers/userController');
     var validate = require('express-validation');
-    var validation = require('../models/userModel')
+    var userModel = require('../models/userModel');
+    var userPasswordModel = require('../models/userPasswordModel');
 
-    app.post('/user/login',validate(validation),userController.login);
-    app.post('/user/signup',validate(validation),userController.signup);
+    app.post('/public/login',validate(userModel),userController.login);
+    app.post('/public/signup',validate(userModel),userController.signup);
     
-    app.route('/user/update/:id')
-        .put(userController.update)
-        .delete(userController.delete);
+    app.put('/private/update', validate(userPasswordModel), userController.update);
+    app.delete('/private/update', userController.delete);
 }
