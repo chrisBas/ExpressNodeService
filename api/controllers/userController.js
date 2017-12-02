@@ -23,13 +23,12 @@ var userController = {
         });
     },
     signup: function(req, res){
-        db.query("INSERT INTO "+userDB+" VALUES(NULL,?,?)",[req.body.username, req.body.password], function(err,rows){
+        db.query("INSERT INTO "+userDB+" VALUES(NULL,?,?,?,?)",[req.body.username, req.body.password, req.body.firstname, req.body.lastname], function(err,rows){
             if(err) {
                 res.json({"isSuccess":false, "message":"Error", "content":err});
             } else {
-                console.log(rows);
                 var jwtToken = jwt.sign({username:req.body.username, password:req.body.password, id:rows["insertId"]}, props.get('jwt.secret'));
-                res.json({"isSuccess":true, "message":"Signup successful", "content":{token:jwtToken}});
+                res.json({"isSuccess":true, "message":"Signup successful", "content":{token:jwtToken, name:req.body.firstname}});
             }
         });
     },

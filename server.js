@@ -10,6 +10,11 @@ var express = require('express'),
     props = propReader('api.properties');
 
 app.use(bodyParser.urlencoded({ extended:true }));
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
 app.use(expressJWT({secret: props.get('jwt.secret')}).unless({path: ['/public/signup', '/public/login']}))
 app.use(bodyParser.json());
 app.use(cookieParser());
